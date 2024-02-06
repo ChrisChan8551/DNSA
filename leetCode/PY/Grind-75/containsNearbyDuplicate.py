@@ -21,6 +21,7 @@
 # -109 <= nums[i] <= 109
 # 0 <= k <= 105
 
+#! sliding window using 2 pointer
 def containsNearbyDuplicate(nums, k):
     # sliding window problem.
     left = 0
@@ -34,6 +35,30 @@ def containsNearbyDuplicate(nums, k):
         if nums[right] in window:
             return True
         window.add(nums[right])
+    return False
+
+#! using dict, has better performance in this problem
+
+
+def containsNearbyDuplicate(nums, k):
+    mydict = {}
+    for i in range(len(nums)):
+        if nums[i] in mydict and abs(i-mydict[nums[i]]) <= k:
+            return True
+        mydict[nums[i]] = i
+    return False
+
+#! this has the best performance because it optimizes the lookup process by directly storing the most recent index of each number encountered in the array.
+
+
+def containsNearbyDuplicate(nums, k):
+    n = len(nums)
+    idx = {}
+    for i in range(n):
+        if nums[i] in idx:
+            if abs(idx[nums[i]]-1) <= k:
+                return True
+        idx[nums[i]] = i
     return False
 
 
