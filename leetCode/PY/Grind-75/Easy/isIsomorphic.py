@@ -44,9 +44,9 @@ def isIsomorphic(s, t):
     return True
 
 # #!Example 1:
-# s = "egg"
-# t = "add"
-# print(isIsomorphic(s, t))
+s = "egg"
+t = "add"
+print(isIsomorphic(s, t))
 # # Output: true
 # #!Example 2:
 s = "foo"
