@@ -21,7 +21,27 @@
 # Explanation: You must delete one element.
 
 def longestSubarray(nums):
-    pass
+    max_length = 0  # Initialize the maximum length of subarray with ones
+    left = 0  # Initialize the left pointer of the sliding window
+    zeros_count = 0  # Initialize the count of zeros inside the window
+
+    # Iterate over the elements of the input array nums using a for loop
+    for right in range(len(nums)):
+        # Increment zeros_count if the current element is zero
+        if nums[right] == 0:
+            zeros_count += 1
+
+        # Shrink the window if it contains more than one zero
+        while zeros_count > 1:
+            if nums[left] == 0:
+                zeros_count -= 1
+            left += 1
+
+        # Update the maximum length of the subarray containing only ones
+        max_length = max(max_length, right - left)
+
+    # Return the maximum length of the subarray containing only ones
+    return max_length
 
 
 #! Example 1:
