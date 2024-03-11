@@ -32,18 +32,28 @@
 #     max_num = max(nums)
 #     return nums.index(max_num)
 
-#! O(log n)
-# def findPeakElement(nums):
-#     left, right = 0, len(nums) - 1
-#     while left < right:
-#         mid = left + (right - left) // 2
-#         if nums[mid] < nums[mid + 1]:
-#             left = mid + 1
-#         else:
-#             right = mid
-#     return left
+#! O(log n) solution indicates binary search
+#! 2 pointer solution
+def findPeakElement(nums):
+    # initialize left and right pointer. Right pointer is at the end of the array. Left is at the beginning.
+    left, right = 0, len(nums) - 1
+    # loop through array while left is less than right
+    while left < right:
+        # perform binary search by first finding the mid point
+        mid = left + (right - left) // 2
+        # if the element to the right of mid is greater than move left pointer to mid
+        if nums[mid] < nums[mid + 1]:
+            left = mid + 1
+        else:
+            # else right pointer moves to mid because the number we're looking for is left of mid.
+            right = mid
+    # return the left pointer after the while loop ends. It should be the max number.
+    return left
 
 #! recursive
+#! O(log n)
+
+
 def findPeakElement(nums):
     def _search(left, right):
         if left == right:
