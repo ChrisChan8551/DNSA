@@ -60,6 +60,17 @@ def frequencySort(str):
 
 #     return result
 
+#! alternative method
+def frequencySort(str):
+    c = Counter(str)
+    # Sort characters based on their frequency in descending order
+    sorted_chars = sorted(c, key=c.get, reverse=True)
+    # Build the result string by repeating characters according to their frequency
+    result = ''
+    for char in sorted_chars:
+        result += char * c[char]
+    #  Return the final sorted string
+    return result
 
 print(frequencySort("tree"))
 # Output: "eert"
