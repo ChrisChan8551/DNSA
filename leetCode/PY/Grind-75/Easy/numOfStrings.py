@@ -46,6 +46,10 @@ def numOfStrings(patterns, word):
     return count
 
 
+def numOfStrings(patterns, word):
+    return sum(x in word for x in patterns)
+
+
 #! Example 1:
 patterns = ["a", "abc", "bc", "d"]
 word = "abc"
