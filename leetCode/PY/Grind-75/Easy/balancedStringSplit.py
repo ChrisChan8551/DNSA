@@ -8,7 +8,6 @@
 # Return the maximum number of balanced strings you can obtain.
 
 
-
 # Example 1:
 
 # Input: s = "RLRRLLRLRL"
