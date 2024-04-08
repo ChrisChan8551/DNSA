@@ -42,10 +42,18 @@
 
 def sumOddLengthSubarrays(arr):
     # sounds like sliding window or 2 pointer
-    pass
+    n = len(arr)
+    total = 0
+    for left in range(n):
+        for right in range(left, n):
+            if (right - left + 1) % 2 == 1:
+                total += sum(arr[left: right + 1])
+
+    return total
+
 
 #! Example 1:
-arr = [1,4,2,5,3]
+arr = [1, 4, 2, 5, 3]
 print(sumOddLengthSubarrays(arr))
 # Output: 58
 # Explanation: The odd-length subarrays of arr and their sums are:
@@ -61,12 +69,12 @@ print(sumOddLengthSubarrays(arr))
 # If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
 
 #! Example 2:
-arr = [1,2]
+arr = [1, 2]
 print(sumOddLengthSubarrays(arr))
 # Output: 3
 # Explanation: There are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.
 
 #! Example 3:
-arr = [10,11,12]
+arr = [10, 11, 12]
 print(sumOddLengthSubarrays(arr))
 # Output: 66
