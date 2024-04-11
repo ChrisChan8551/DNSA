@@ -41,13 +41,24 @@
 # words consists of distinct strings.
 # words[i] contains only lowercase English letters.
 
+# def maximumNumberOfStringPairs(words):
+#     count = 0
+#     n = len(words)
+#     for i in range(n):
+#         for j in range(i+1, n):
+#             if (words[i] == words[j][::-1]):
+#                 count += 1
+#     return count
+
+
 def maximumNumberOfStringPairs(words):
     count = 0
-    n = len(words)
-    for i in range(n):
-        for j in range(i+1, n):
-            if (words[i] == words[j][::-1]):
-                count += 1
+    strings = set()
+    for word in words:
+        if word in strings:
+            count += 1
+        else:
+            strings.add(word[::-1])
     return count
 
 
