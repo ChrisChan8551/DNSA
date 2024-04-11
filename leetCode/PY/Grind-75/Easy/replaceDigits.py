@@ -34,42 +34,46 @@
 # s consists only of lowercase English letters and digits.
 # shift(s[i-1], s[i]) <= 'z' for all odd indices i.
 
-# def replaceDigits(s):
+# def replace_digits(s):
 #     if len(s) == 1:
 #         return s
-
 #     characters = list(s)
-
 #     for i in range(1, len(s), 2):
 #         char = ord(s[i - 1]) + int(s[i])
 #         characters[i] = chr(char)
-
 #     return ''.join(characters)
 
 
+# def replace_digits(s):
+#     result = list(s)
+#     for i in range(1, len(s), 2):
+#         prev_char = result[i - 1]
+#         x = int(result[i])
+#         alphabet = "abcdefghijklmnopqrstuvwxyz"
+#         idx = (alphabet.index(prev_char) + x) % 26
+#         result[i] = alphabet[idx]
+#     return ''.join(result)
+
+
 def replace_digits(s):
-    result = list(s)
-
-    for i in range(1, len(s), 2):
-        prev_char = result[i - 1]
-        x = int(result[i])
-
-        alphabet = "abcdefghijklmnopqrstuvwxyz"
-        idx = (alphabet.index(prev_char) + x) % 26
-
-        result[i] = alphabet[idx]
-
-    return ''.join(result)
+    alphabet = list('abcdefghijklmnopqrstuvwxyz')
+    result = ''
+    for i in range(len(s)):
+        if s[i].isdigit():
+            result += alphabet[alphabet.index(s[i - 1]) + int(s[i])]
+        else:
+            result += s[i]
+    return result
 
 
-print(replaceDigits("a1c1e1"))
+print(replace_digits("a1c1e1"))
 # Output: "abcdef"
 # Explanation: The digits are replaced as follows:
 # - s[1] -> shift('a',1) = 'b'
 # - s[3] -> shift('c',1) = 'd'
 # - s[5] -> shift('e',1) = 'f'
 
-# print(replaceDigits("a1b2c3d4e"))
+print(replace_digits("a1b2c3d4e"))
 # # Output: "abbdcfdhe"
 # # Explanation: The digits are replaced as follows:
 # # - s[1] -> shift('a',1) = 'b'
