@@ -59,8 +59,11 @@ def asteroidCollision(asteroids):
     # 10 pos - > stack
     # -5 & 10
     stack = []
+
     for asteroid in asteroids:
         flag = True
+
+        # step 1, run while loop until cant pop anymore
         while stack and asteroid < 0 and stack[-1] > 0:
             if abs(asteroid) > stack[-1]:
                 stack.pop()
@@ -70,8 +73,12 @@ def asteroidCollision(asteroids):
                 break
             else:
                 flag = False
+                break
+
+        # step 2, append to stack if applicable
         if flag:
             stack.append(asteroid)
+
     return stack
 
 
