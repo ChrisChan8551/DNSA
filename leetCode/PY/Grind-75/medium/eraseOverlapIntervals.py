@@ -28,20 +28,14 @@
 
 
 def eraseOverlapIntervals(intervals):
-    # sort subarrays by ending number
     intervals.sort(key=lambda x: x[1])
     end = intervals[0][1]
-    print(intervals)
-    print(end)
     removed = 0
-    # loop through the array and compare subarrays
     for i in range(1, len(intervals)):
-    
         if intervals[i][0] < end:
             removed += 1
         else:
             end = intervals[i][1]
-
     return removed
 
 
