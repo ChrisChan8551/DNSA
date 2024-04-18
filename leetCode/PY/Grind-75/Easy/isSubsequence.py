@@ -45,6 +45,19 @@ def isSubsequence(s, t):
             return True
     return False
 
+# def isSubsequence(s, t):
+#     left, right = 0, 0
+#     # if len(t) < len(s):
+#     #     return False
+#     # if not s:
+#     #     return True
+#     while left < len(s) and right < len(t):
+#         if s[left] == t[right]:
+#             left += 1
+#         right += 1
+
+#     return left == len(s)
+
 
 #! Example 1:
 # Input: s = "abc", t = "ahbgdc"
