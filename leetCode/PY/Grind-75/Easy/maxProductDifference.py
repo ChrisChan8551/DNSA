@@ -33,7 +33,12 @@ def maxProductDifference(nums):
     n = len(nums)
     max1, max2 = nums[n-1], nums[n-2]
     min1, min2 = nums[0], nums[1]
-    return (max1*max2) - (min1*min2)
+    return (max1 * max2) - (min1 * min2)
+
+
+# def maxProductDifference(nums):
+#     nums.sort()
+#     return (nums[len(nums) - 1] * nums[len(nums) - 2]) - (nums[0] * nums[1])
 
 
 print(maxProductDifference([5, 6, 2, 7, 4]))
