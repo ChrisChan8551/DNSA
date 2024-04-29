@@ -6,32 +6,32 @@ class Node:
         self.next = None
 
 #! iterative
-# def reverse_list(head):
-#     # need to assign 2 pointer strategy. 1 for next, and 1 for prev.
-#     current = head
-#     prev = None
-#     # transverse through the list.
-#     while current is not None:
-#         # Assign the NEXT node to another variable, so that current doesn't override current.next
-#         next = current.next
-#         # When going to the next node, set current.next to prev before reassigning current to current.next
-#         current.next = prev
-#         prev = current
-#         current = next
-#     return prev
+def reverse_list(head):
+    # need to assign 2 pointer strategy. 1 for next, and 1 for prev.
+    current = head
+    prev = None
+    # transverse through the list.
+    while current is not None:
+        # Assign the NEXT node to another variable, so that current doesn't override current.next
+        next = current.next
+        # When going to the next node, set current.next to prev before reassigning current to current.next
+        current.next = prev
+        prev = current
+        current = next
+    return prev
 
 #! recursive - slightly worse space complexity
 
 
-def reverse_list(head, prev=None):  # set default argument of prev to None
-    # base case - return prev if head is None
-    if head is None:
-        return prev
-    # assign next = head.next
-    next = head.next
-    # assign head.next to prev
-    head.next = prev
-    return reverse_list(next, head)
+# def reverse_list(head, prev=None):  # set default argument of prev to None
+#     # base case - return prev if head is None
+#     if head is None:
+#         return prev
+#     # assign next = head.next
+#     next = head.next
+#     # assign head.next to prev
+#     head.next = prev
+#     return reverse_list(next, head)
 
 
 #! TEST_00
