@@ -32,21 +32,28 @@
 # images[i][j] is either 0 or 1.
 
 
+# def flipAndInvertImage(image):
+#     for row in image:
+#         row.reverse()
+#         for i in range(len(row)):
+#             row[i] = 1 if row[i] == 0 else 0
+
+#     return image
+
 def flipAndInvertImage(image):
-    for row in image:
-        row.reverse()
-        for i in range(len(row)):
-            row[i] = 1 if row[i] == 0 else 0
-
+    n = len(image)
+    for i in range(n):
+        image[i]=image[i][::-1]
+        for j in range(n):
+            image[i][j] = 1 - image[i][j]
     return image
-
 
 print(flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]))
 # Output: [[1,0,0],[0,1,0],[1,1,1]]
 # Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 # Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
 
-# print(flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
+print(flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
 # Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 # Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
 # Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]

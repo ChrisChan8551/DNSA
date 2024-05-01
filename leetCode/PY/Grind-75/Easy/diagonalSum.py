@@ -41,3 +41,18 @@ def diagonalSum(mat):
         if i != n - i - 1:  # if it doesn't equal to center
             total += mat[i][n-i-1]
     return total
+
+def diagonalSum(mat):
+    n = len(mat)
+    total = 0
+    for i in range(n):
+        total+=mat[i][i]
+        total+=(mat[i][n-i-1])
+    if n % 2 != 0:
+        total-=(mat[n//2][n//2])
+
+
+
+
+    print(total)
+    return total
