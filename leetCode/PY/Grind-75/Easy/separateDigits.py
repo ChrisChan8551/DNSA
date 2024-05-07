@@ -30,15 +30,16 @@
 # 1 <= nums[i] <= 105
 
 def separateDigits(nums):
-    result =[]
+    result = []
     for num in nums:
-        digits=[int(digit) for digit in str(num)]
-        print(digits)
-
+        digits = [int(digit) for digit in str(num)]
+        for digit in digits:
+            result.append(digit)
+    return result
 
 
 #! Example 1:
-nums = [13,25,83,77]
+nums = [13, 25, 83, 77]
 print(separateDigits(nums))
 # Output: [1,3,2,5,8,3,7,7]
 # Explanation:
@@ -49,8 +50,7 @@ print(separateDigits(nums))
 # answer = [1,3,2,5,8,3,7,7]. Note that answer contains the separations in the same order.
 
 #! Example 2:
-# nums = [7,1,3,9]
-# print(separateDigits(nums))
+nums = [7, 1, 3, 9]
+print(separateDigits(nums))
 # Output: [7,1,3,9]
-# Explanation: The separation of each integer in nums is itself.
-# answer = [7,1,3,9].
+# Explanation: The separation of each integer in nums is itself
