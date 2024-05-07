@@ -53,9 +53,7 @@ def destCity(paths):
     for path in paths:
         from_city, to_city = path
         out_cities[from_city] = out_cities.get(from_city, 0) + 1
-        print(out_cities.get(from_city, 0) + 1)
         in_cities[to_city] = in_cities.get(to_city,0) + 1
-        print(in_cities.get(to_city,0) + 1)
     for city in in_cities:
         if city not in out_cities:
             return city
