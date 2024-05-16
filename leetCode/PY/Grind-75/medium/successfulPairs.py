@@ -73,6 +73,7 @@ def successfulPairs(spells, potions, success):
 
 
 def successfulPairs(spells, potions, success):
+    #
     n = len(spells)
     m = len(potions)
 
