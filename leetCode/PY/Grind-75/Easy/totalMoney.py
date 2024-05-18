@@ -30,12 +30,19 @@
 # Simulate the process by keeping track of how much money Hercy is putting in and which day of the week it is, and use this information to deduce how much money John will put in the next day.
 
 def totalMoney(n):
-    pass
+    total = 0
+    start = 1
+    while n > 0:
+        for i in range(min(n, 7)):
+            total += start + i
+        n -= 7
+        start += 1
+    return total
 
 
 #! Example 1:
-n = 4
-print(totalMoney(n))
+# n = 4
+# print(totalMoney(n))
 # Output: 10
 # Explanation: After the 4th day, the total is 1 + 2 + 3 + 4 = 10.
 
@@ -46,7 +53,7 @@ print(totalMoney(n))
 # Explanation: After the 10th day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4) = 37. Notice that on the 2nd Monday, Hercy only puts in $2.
 
 #! Example 3:
-n = 20
-print(totalMoney(n))
+# n = 20
+# print(totalMoney(n))
 # Output: 96
 # Explanation: After the 20th day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4 + 5 + 6 + 7 + 8) + (3 + 4 + 5 + 6 + 7 + 8) = 96.
