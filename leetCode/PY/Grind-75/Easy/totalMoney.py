@@ -30,21 +30,40 @@
 # Simulate the process by keeping track of how much money Hercy is putting in and which day of the week it is, and use this information to deduce how much money John will put in the next day.
 
 def totalMoney(n):
-    total = 0
+    # will need to create a loop to add up 7 days
+    # for every new week will need to increase starting day by 1, declare a starting point. Initial starting point starts with 1
     start = 1
+    total = 0
     while n > 0:
-        for i in range(min(n, 7)):
-            total += start + i
-        n -= 7
+        for i in range(start, min(n, 8)):
+            total += i
         start += 1
+        n -= 7
+    return total
+
+
+def totalMoney(n):
+    start = 1
+    total = 0
+    while n > 0:
+        # Calculate the number of days in the current week
+        days_in_week = min(n, 7)
+        # Use the starting point in the range and correctly calculate the total
+        for i in range(start, start + days_in_week):
+            total += i
+        # Increment the starting value for the next week
+        start += 1
+        # Decrease the number of days remaining by the number of days processed
+        n -= days_in_week
     return total
 
 
 #! Example 1:
-# n = 4
-# print(totalMoney(n))
+n = 4
+print(totalMoney(n))
 # Output: 10
 # Explanation: After the 4th day, the total is 1 + 2 + 3 + 4 = 10.
+
 
 #! Example 2:
 n = 10
