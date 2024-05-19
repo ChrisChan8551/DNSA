@@ -44,9 +44,18 @@
 # If the arrival time plus the delayed time is greater than or equal to 24, you can also subtract 24 to get the time in the 24-hour format.
 
 
-def findDelayedArrivalTime(arrivalTime, delayedTime):
-    pass
+# def findDelayedArrivalTime(arrivalTime, delayedTime):
+#     totalTime = arrivalTime + delayedTime
+#     if totalTime == 24:
+#         return 0
+#     elif totalTime < 24:
+#         return totalTime
+#     elif totalTime > 24:
+#         day = totalTime % 24
+#         return day
 
+def findDelayedArrivalTime(arrivalTime, delayedTime):
+    return (arrivalTime + delayedTime) % 24
 
 #! Example 1:
 arrivalTime = 15
