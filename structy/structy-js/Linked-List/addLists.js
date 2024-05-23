@@ -23,11 +23,11 @@ class Node {
 }
 
 // const addLists = (head1, head2) => {
-// 	//1) transverse both lists in reverse order
-// 	//2) sum both lists in reverse order
-// 	//3) null = 0
-// 	//4) handle a carry digit
-// 	//5) handle final carry digit
+	//1) transverse both lists in reverse order
+	//2) sum both lists in reverse order
+	//3) null = 0
+	//4) handle a carry digit
+	//5) handle final carry digit
 
 // };
 
@@ -45,7 +45,7 @@ const addLists = (head1, head2, carry = 0) => {
 
 	const next1 = head1 === null ? null : head1.next;
 	const next2 = head2 === null ? null : head2.next;
-    
+
 	result.next = addLists(next1, next2, nextCarry);
 	return result;
 };
