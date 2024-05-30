@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
 # Longest Substring Without Repeating Characters
 # Given a string s, find the length of the longest substring without repeating characters.
 
@@ -35,7 +37,8 @@ def lengthOfLongestSubstring(s):
         while s[right] in window:
             # check if right char in string is inside the window set.
             # if so remove the first char which is window left
-            window.discard(s[left])
+            # window.discard(s[left]) - .discard() method does not raise any error if value is not found
+            window.remove(s[left])
             # increment the left pointer
             left += 1
         # check and update maxLength
@@ -64,6 +67,31 @@ def lengthOfLongestSubstring(s):
 #         maxLength = max(maxLength, currentLength)
 #     return maxLength
 
+
+def lengthOfLongestSubstring(s):
+    chars = set()
+    left = right = longest = 0
+    while right < len(s):
+        if s[right] not in chars:
+            chars.add(s[right])
+            right += 1
+            longest = max(longest, right-left)
+        else:
+            chars.remove(s[left])
+            left += 1
+    return longest
+
+#algo academy way
+def lengthOfLongestSubstring(s):
+    chars = set()
+    left = right = longest = 0
+    for right in range(len(s)):
+        while s[right] in chars:
+            chars.remove(s[left])
+            left += 1
+        chars.add(s[right])
+        longest = max(longest, right - left + 1)
+    return longest
 
 #! TEST 1
 s = "abcabcbb"
