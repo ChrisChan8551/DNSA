@@ -43,16 +43,38 @@
 # Hint 2
 # Traverse the hash map and if any point has the same y-coordinate as the query point, consider this point and the query point to form one of the horizontal lines of the square.
 
+from collections import defaultdict
+
+
 class DetectSquares:
+    # need a way to track points
+    # keep track using a hash table (defaultdict(int))
+    # keys = tuple(x,y)
+    # find diagonal points
+    # count point = x1,y1
+    # compare point = x2,y2
+
+    # draw lines to see if we can find points in such a way that it can create a square
+    # finding points on the same X and Y axis
 
     def __init__(self):
-        pass
+        self.points = defaultdict(int) # int will default value to zero
 
     def add(point):
-        pass
+        self.points[tuple(point)] += 1
 
     def count(point):
-        pass
+        x1, y1 = point
+        squares = 0
+        for x2, y2 in self.points:
+            if abs(x1-x2) == abs(y1-y2):
+                corner1 = (x1, y2)
+                corner2 = (x2, y1)
+
+            if self.points[corner1] and self.points[corner2]:
+                squares += self.points[(x2,y2)] * self.points[corner1] * self.points[corner2]
+
+        return squares
 
 
 # Your DetectSquares object will be instantiated and called as such:
