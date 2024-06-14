@@ -24,21 +24,33 @@
 # 0 <= strs[i].length <= 100
 # strs[i] consists of lowercase English letters.
 
-def groupAnagrams(strs):
-    pass
+from collections import defaultdict
 
+
+def groupAnagrams(strs):
+    anagrams = defaultdict(list)
+    result = []
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        anagrams[sorted_word].append(word)
+
+    # for value in anagrams.values():
+    #     result.append(value)
+    # return result
+    #! alternative
+    return list(anagrams.values())
 
 #! Example 1:
 strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 print(groupAnagrams(strs))
 # Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
-#! Example 2:
-strs = [""]
-print(groupAnagrams(strs))
-# Output: [[""]]
+# #! Example 2:
+# strs = [""]
+# print(groupAnagrams(strs))
+# # Output: [[""]]
 
-#! Example 3:
-strs = ["a"]
-print(groupAnagrams(strs))
-# Output: [["a"]]
+# #! Example 3:
+# strs = ["a"]
+# print(groupAnagrams(strs))
+# # Output: [["a"]]
