@@ -24,18 +24,55 @@
 
 
 # Constraints:
-
 # 1 <= tasks.length <= 104
 # tasks[i] is an uppercase English letter.
 # 0 <= n <= 100
 
-# Hint 1
+#! Hint 1
 # There are many different solutions for this problem, including a greedy algorithm.
-# Hint 2
+
+#! Hint 2
 # For every cycle, find the most frequent letter that can be placed in this cycle. After placing, decrease the frequency of that letter by one.
 
+from collections import defaultdict, deque
+import heapq
+from typing import Counter
+
+
 def leastInterval(tasks, n):
-    pass
+    # keep track of freq (wait time, #tasks)
+    # each time we add task to sequence, set wait time to n, and reduce all others by -1
+    # iterate through dict, add to sequence, reduce freq of each task
+    # if total tasks < n, then add (n - total tasks) to sequence
+    # prioritize doing tasks with higher frequency
+    # a heap / priority queue would allow us to keep track of highest freq at all times
+    # pop off from heap, and increase val by 1
+    # we can calculate the time for when we can next do a task (expiration time)
+    # keep track of time passed since the first task
+    task_freq = defaultdict(int)
+    queue = deque()
+    for task in tasks:
+        task_freq[task] -= 1
+    time = 0
+
+    heap = list(task_freq.values())
+    heapq.heapify(heap)
+    queue = deque()
+
+    while heap or queue:
+
+        if heap:
+            freq = heapq.heappop(heap) + 1
+            if freq != 0:
+                queue.append((freq, time + n))
+
+        if queue and queue[0][1] == time:
+            completed_freq, expiration_time = queue.popleft()
+            heapq.heappush(heap, completed_freq)
+
+        time += 1
+
+    return time
 
 
 #! Example 1:
