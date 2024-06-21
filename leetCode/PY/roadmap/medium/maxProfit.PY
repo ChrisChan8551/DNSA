@@ -19,19 +19,38 @@
 # Explanation: In this case, no transactions are done and the max profit = 0.
 
 #! brute force
-def maxProfit(prices):
-    # 2 pointer or sliding window
-    # declare variable to track maximum profit
-    # loop through the prices and compare right - left
-    # left, right = 0, len(prices)
-    n = len(prices)
-    max_profit = 0
-    for left in range(0, n):
-        for right in range(left + 1, n):
-            max_profit = max(max_profit, prices[right] - prices[left])
-            print(max_profit)
-    return max_profit
+# def maxProfit(prices):
+#     # 2 pointer or sliding window
+#     # declare variable to track maximum profit
+#     # loop through the prices and compare right - left
+#     # left, right = 0, len(prices)
+#     n = len(prices)
+#     max_profit = 0
+#     for left in range(0, n):
+#         for right in range(left + 1, n):
+#             max_profit = max(max_profit, prices[right] - prices[left])
+#             print(max_profit)
+#     return max_profit
 
+# def maxProfit(prices):
+#     max_profit = 0
+#     min_price = float('inf')
+#     for i in range(len(prices)):
+#         min_price = min(min_price, prices[i])
+#         max_profit = max(max_profit, prices[i] - min_price)
+#     return max_profit
+
+#! better performance because it's more explicit reducing overhead using min and max methods above.
+def maxProfit(prices):
+    res = 0
+    lowest = prices[0]
+    for price in prices:
+        if price < lowest:
+            lowest = price
+        current = price - lowest
+        if current > res:
+            res = current
+    return res
 
     #! Example 1:
 prices = [7, 1, 5, 3, 6, 4]
