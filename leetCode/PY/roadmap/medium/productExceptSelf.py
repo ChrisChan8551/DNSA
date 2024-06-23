@@ -31,6 +31,7 @@
 #! Hint 2
 # Can you minimize additional space usage by reusing memory or modifying the input array to store intermediate results?
 
+#! brute force O(n^2)
 def productExceptSelf(nums):
     result = []
     n = len(nums)
@@ -41,6 +42,16 @@ def productExceptSelf(nums):
                 total *= nums[j]
         result.append(total)
     return result
+
+#! O(n) and O(1) Space
+
+
+def productExceptSelf(nums):
+    # the result space should be the same as length of nums array. So preallocate result array
+    n = len(nums)
+    result = [1] * n
+
+    pass
 
 
 #! Example 1:
