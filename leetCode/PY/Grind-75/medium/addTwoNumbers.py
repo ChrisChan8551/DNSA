@@ -25,30 +25,58 @@
 # 0 <= Node.val <= 9
 # It is guaranteed that the list represents a number that does not have leading zeros.
 
+# def addTwoNumbers(l1, l2):
+#     dummyHead = ListNode()
+#     result = dummyHead
+
+#     total = carry = 0
+
+#     while l1 or l2 or carry:
+#         total = carry
+
+#         if l1:
+#             total += l1.val
+#             l1 = l1.next
+#         if l2:
+#             total += l2.val
+#             l2 = l2.next
+
+#         num = total % 10
+#         carry = total // 10
+#         dummyHead.next = ListNode(num)
+#         dummyHead = dummyHead.next
+
+#     return result.next
+
+
 def addTwoNumbers(l1, l2):
-    dummyHead = ListNode()
-    result = dummyHead
+    # create new linked list
+    # loop though both linked list
+    # if sum is >= 10, add % 10 to next sum
+    # use the short list first, and then add the remainder of the longer list to the end.
+    dummy_head = ListNode()
+    prev = dummy_head 
+    carry = 0
+    while l1 or l2:
+        #create a dummy head for to start the new linked list
+        l1_val = 0 if not l1 else l1.val
+        l2_val = 0 if not l2 else l2.val
 
-    total = carry = 0
-
-    while l1 or l2 or carry:
-        total = carry
-
+        total = l1_val + l2_val + carry
+        current_node = ListNode(total % 10)
+        prev.next = current_node
+        prev = prev.next
         if l1:
-            total += l1.val
             l1 = l1.next
         if l2:
-            total += l2.val
             l2 = l2.next
-
-        num = total % 10
         carry = total // 10
-        dummyHead.next = ListNode(num)
-        dummyHead = dummyHead.next
-
-    return result.next
 
 
+    if carry:
+        prev.next = ListNode(carry)
+
+    return dummy_head.next
 
 
 
