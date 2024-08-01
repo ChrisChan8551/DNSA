@@ -41,7 +41,7 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        # pre-ordrer traversal -> DFS - usually means recursive calls
+        # pre-order traversal -> DFS - usually means recursive calls
         # process current node, traverse the left, then traverse the right side
         # base case: when node is null
         # takes care of both leaves and nodes that are missing 1 child
