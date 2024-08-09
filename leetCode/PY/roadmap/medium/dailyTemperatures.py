@@ -26,34 +26,34 @@
 
 
 #! brute force O(n^2)
-def dailyTemperatures(temperatures):
-    n = len(temperatures)
-    result = [0] * n
-    for i in range(n):
-        for j in range(i + 1, n):
-            if temperatures[j] > temperatures[i]:
-                result[i] = j - i
-                break
-    return result
-
-#! O(n) solution
 # def dailyTemperatures(temperatures):
 #     n = len(temperatures)
-#     # the length of the result can only be as long as temperatures array. Because of that, you need to pre-allocate the result array with 0's x length.
 #     result = [0] * n
-#     # use a stack to keep track of indices of temperatures
-#     stack = []
-#     # loop through the temperatures array
 #     for i in range(n):
-#         # if there's something in the stack, check if the top of the stack is current temperature is lower than the top of the stack (stack[-1])
-#         while stack and temperatures[stack[-1]] < temperatures[i]:
-#             # if the temperature in the stack is greater, then pop the index from the stack.
-#             index = stack.pop()
-#             # subtract the current and stack index then add it to the result index
-#             result[index] = i - index
-#         # add index to the stack if current temperature is higher.
-#         stack.append(i)
+#         for j in range(i + 1, n):
+#             if temperatures[j] > temperatures[i]:
+#                 result[i] = j - i
+#                 break
 #     return result
+
+#! O(n) solution
+def dailyTemperatures(temperatures):
+    n = len(temperatures)
+    # the length of the result can only be as long as temperatures array. Because of that, you need to pre-allocate the result array with 0's x length.
+    result = [0] * n
+    # use a stack to keep track of indices of temperatures
+    stack = []
+    # loop through the temperatures array
+    for i in range(n):
+        # if there's something in the stack, check if the top of the stack is current temperature is lower than the top of the stack (stack[-1])
+        while stack and temperatures[stack[-1]] < temperatures[i]:
+            # if the temperature in the stack is greater, then pop the index from the stack.
+            index = stack.pop()
+            # subtract the current and stack index then add it to the result index
+            result[index] = i - index
+        # add index to the stack if current temperature is higher.
+        stack.append(i)
+    return result
 
 
 #! Example 1:
