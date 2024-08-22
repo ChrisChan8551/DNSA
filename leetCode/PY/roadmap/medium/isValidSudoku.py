@@ -21,10 +21,39 @@ def subBox(board):
     return
 
 
-
 def isValidSudoku(board):
+    # check if there are any duplicates in row, cols, and subboxes
+    # rows = subarray
+    # store values in a data structure
+    # using a set will allow us to check for unique values
+    # will need to use a set for each row, col, subbox.
+    # check for conflicts as we add numbers into the sets
+    # if there is a conflict return false
+    # return True if we can go through entire matrix without conflicts
+    # the start of every subbox is every 3 spaces.
 
-    return 
+    # preassign set and populate for the grid
+    row = [set() for _ in range(9)]
+    col = [set() for _ in range(9)]
+    box = defaultdict(set)
+    for r in range(9):
+        for c in range(9):
+            current_value = board[r][c]
+
+            if current_value == '.':
+                continue
+
+            box_coord = f'{r//3},{c//3}'
+
+            # check if value exists in the set while traversing the grid
+            if current_value in row[r] or current_value in col[c] or current_value in box[box_coord]:
+                return False
+            # if no value exists then add to grid
+            row[r].add(current_value)
+            col[c].add(current_value)
+            box[box_coord].add(current_value)
+
+    return True
 
 
 #! Example 1:
