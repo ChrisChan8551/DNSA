@@ -17,12 +17,32 @@
 # The constraints are small. Check all pairs.
 
 #! brute force
+from collections import defaultdict
+
+
 def numberOfPairs(nums1, nums2, k):
     count = 0
     for i in range(len(nums1)):
         for j in range(len(nums2)):
             if nums1[i] % (nums2[j] * k) == 0:
                 count += 1
+    return count
+
+#! O(n)
+
+
+def numberOfPairs(nums1, nums2, k):
+    count = 0
+    hash_map = defaultdict(int)
+    # Create a divisor map from nums2 by multiplying each element by k
+    for num in nums2:
+        hash_map[num * k] += 1
+
+    # For each element in nums1, check if it's divisible by any of the divisors
+    for num in nums1:
+        for divisor in hash_map:
+            if num % divisor == 0:
+                count += hash_map[divisor]
     return count
 
 
