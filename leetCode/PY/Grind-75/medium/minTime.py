@@ -36,41 +36,63 @@
 from collections import defaultdict
 
 
+# def minTime(n, edges, hasApple):
+#     # traverse tree to get all apples
+#     # needs to return to vertex 0 at the end
+#     # DFS to search tree
+#     #! This is not a binary tree. It's a graph.
+#     # convert edges into adjacency list to more easily manage
+#     graph = defaultdict(list)
+#     visited = set()
+#     for a, b in edges:
+#         # need to setup both ways because it's undirected tree
+#         graph[a].append(b)
+#         graph[b].append(a)
+
+#     def _dfs(node):
+#         if node in visited:
+#             return 0
+
+#         visited.add(node)
+#         seconds = 0
+
+#         # process node - traverse all neighbors as there's multiple possible neighbors.
+
+#         for child in graph[node]:
+#             seconds += _dfs(child)
+
+#         # checking if there are apples in children subtrees
+#         if seconds > 0:
+#             if node == 0:
+#                 return seconds
+#             else:
+#                 return seconds + 2
+#         # if there are no apples below, check current node for an apple
+#         return 2 if hasApple[node] and node != 0 else 0
+
+#     return _dfs(0)
+
 def minTime(n, edges, hasApple):
-    # traverse tree to get all apples
-    # needs to return to vertex 0 at the end
-    # DFS to search tree
-    #! This is not a binary tree. It's a graph.
-    # convert edges into adjacency list to more easily manage
-    graph = defaultdict(list)
-    visited = set()
+    # Create an adjacency list for the tree
+    tree = defaultdict(list)
     for a, b in edges:
-        # need to setup both ways because it's undirected tree
-        graph[a].append(b)
-        graph[b].append(a)
+        tree[a].append(b)
+        tree[b].append(a)
 
-    def _dfs(node):
-        if node in visited:
-            return 0
+    # Depth-First Search to calculate the minimum time
+    def dfs(node, parent):
+        total_time = 0
+        for child in tree[node]:
+            if child == parent:
+                continue
+            child_time = dfs(child, node)
+            # If the child has an apple or there are apples in its subtree, add 2 seconds (1 second each way)
+            if child_time > 0 or hasApple[child]:
+                total_time += child_time + 2
+        return total_time
 
-        visited.add(node)
-        seconds = 0
+    return dfs(0, -1)
 
-        # process node - traverse all neighbors as there's multiple possible neighbors.
-
-        for child in graph[node]:
-            seconds += _dfs(child)
-
-        # checking if there are apples in children subtrees
-        if seconds > 0:
-            if node == 0:
-                return seconds
-            else:
-                return seconds + 2
-        # if there are no apples below, check current node for an apple
-        return 2 if hasApple[node] and node != 0 else 0
-
-    return _dfs(0)
 
 #! Example 1:
 n = 7
