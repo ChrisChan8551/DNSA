@@ -2,10 +2,10 @@
 # subarray that optimally utilizes these resources under the following
 # constraints:
 # • The subarray must have a specific length, denoted ask.
-# • All elements in the subarray must be unique, representing distinct
+# • All elements in the subarray must be ***unique, representing distinct
 # resource allocations.
-# The ultimate goal is to f ind the su bar ray that maximizes the sum o·
-# the allocated resources. Return t he sum for that subarray. If it is nc
+# The ultimate goal is to find the subarray that maximizes the sum of
+# the allocated resources. Return t he sum for that subarray. If it is not
 # possible to allocate resources per the constraints, return -1.
 # Note: A subarray is a contiguous segment of an array.
 # Example
@@ -18,6 +18,7 @@
 # • (2, 3, 7], sum = 12
 # • (7, 3, 5],sum = 1 s
 # Return the maximum sum, 15.
+
 # Function Description
 # Complete the function findOptima/Resources in the editor below.
 # findOptima/Resources has the following parameter(s):
