@@ -16,18 +16,40 @@
 # Input: head = [1,2], n = 1
 # Output: [1]
 
-def removeNthFromEnd(head, n):
-    slow = fast = head
-    # this sets fast point to jump ahead N times so that the slow pointer will stop right before the node that needs to be removed.
-    for _ in range(n):
-        fast = fast.next
+# def removeNthFromEnd(head, n):
+#     slow = fast = head
+#     # this sets fast point to jump ahead N times so that the slow pointer will stop right before the node that needs to be removed.
+#     for _ in range(n):
+#         fast = fast.next
 
-    # edge case if link list is too short
-    if not fast:
+#     # edge case if link list is too short
+#     if not fast:
+#         return head.next
+
+#     while fast.next:
+#         slow = slow.next
+#         fast = fast.next
+#     slow.next = slow.next.next
+#     return head
+
+def removeNthFromEnd(head, n):
+    count = 0
+    current = head
+
+    while current:
+        count += 1
+        current = current.next
+
+    current = head
+    moves = count - n - 1
+
+    if count == n:
         return head.next
 
-    while fast.next:
-        slow = slow.next
-        fast = fast.next
-    slow.next = slow.next.next
+    while moves:
+        moves -= 1
+        current = current.next
+
+    current.next = current.next.next
+
     return head

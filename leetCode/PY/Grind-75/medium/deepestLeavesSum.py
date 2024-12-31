@@ -19,5 +19,29 @@
 # The number of nodes in the tree is in the range [1, 104].
 # 1 <= Node.val <= 100
 
+from collections import deque
+
+
 def deepestLeavesSum(root):
-    pass
+    # find deepest leaves
+    # BFS since we have to find leaves on the last level
+    # can also do DFS if we track levels and deepest level
+    # keep track of layer sums
+    # indices will correspond to layer number
+    queue = deque([root])
+    layer_sums = []
+
+    while queue:
+        snapshot = len(queue)
+        running_sum = 0
+        for _ in range(snapshot):
+
+            current = queue.popleft()
+            running_sum += current.val
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        layer_sums.append(running_sum)
+    # return the last element of layer_sums because it'll be the deepest leaf
+    return layer_sums[-1]
