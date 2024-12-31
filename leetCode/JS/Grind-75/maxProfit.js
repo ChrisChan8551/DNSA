@@ -22,17 +22,28 @@
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
 
+// var maxProfit = function (prices) {
+// 	let min_price = Infinity;
+// 	let max_profit = 0;
+// 	for (let i = 0; i < prices.length; i++) {
+// 		if (prices[i] < min_price) min_price = prices[i];
+// 		// console.log("min: ", min_price)
+// 		current = prices[i] - min_price;
+// 		// console.log("max: ", max_profit)
+// 		if (current > max_profit) max_profit = current;
+// 	}
+// 	return max_profit;
+// };
+
+
 var maxProfit = function (prices) {
-	let min_price = Infinity;
-	let max_profit = 0;
-	for (let i = 0; i < prices.length; i++) {
-		if (prices[i] < min_price) min_price = prices[i];
-		// console.log("min: ", min_price)
-		current = prices[i] - min_price;
-		// console.log("max: ", max_profit)
-		if (current > max_profit) max_profit = current;
-	}
-	return max_profit;
+    let max_profit = 0
+    let min_price = Infinity
+    for (let i = 0; i < prices.length; i++) {
+        min_price = Math.min(min_price, prices[i])
+        max_profit = Math.max(max_profit, prices[i] - min_price)
+    }
+    return max_profit
 };
 
 //! Example 1:
