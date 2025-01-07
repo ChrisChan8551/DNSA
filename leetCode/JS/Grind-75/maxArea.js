@@ -6,19 +6,14 @@
 
 // Notice that you may not slant the container.
 
-
-
-// Example 1:
-
-
+//! Example 1:
 // Input: height = [1,8,6,2,5,4,8,3,7]
 // Output: 49
 // Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
-// Example 2:
 
+//! Example 2:
 // Input: height = [1,1]
 // Output: 1
-
 
 // Constraints:
 
@@ -26,6 +21,30 @@
 // 2 <= n <= 105
 // 0 <= height[i] <= 104
 
-var maxArea = function(height) {
-
+const maxArea = function (height) {
+	let area = 0;
+	let [left, right] = [0, height.length - 1];
+	while (left < right) {
+		let minheight = Math.min(height[left], height[right]);
+		let width = right - left;
+		let current = minheight * width;
+		area = Math.max(area, current);
+		if (height[left] < height[right]) {
+			left++;
+		} else {
+			right--;
+		}
+	}
+	return area;
 };
+
+//! Example 1:
+let height = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+console.log(maxArea(height));
+// Output: 49
+// Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+//! Example 2:
+height = [1, 1];
+console.log(maxArea(height));
+// Output: 1
