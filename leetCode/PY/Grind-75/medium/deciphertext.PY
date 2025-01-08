@@ -36,21 +36,47 @@
 # (No such relationship exists between 'love' and 'cdeb')
 
 
-def decipher(encrypted, known_word):
-    # check at least 1 word has to have the same length as original word. If all words dont have exact length, then return 'invalid'
-    # loop through the string, then each letter of each word.
-    # shift each letter to see if it matches the original word
-    # if we have to shift towards the beginning or the end, we have to cycle back through the alphabet (26 letters). Maybe how many letters % 26?
+# def decipher(encrypted, known_word):
+#     # check at least 1 word has to have the same length as original word. If all words dont have exact length, then return 'invalid'
+#     # loop through the string, then each letter of each word.
+#     # shift each letter to see if it matches the original word
+#     # if we have to shift towards the beginning or the end, we have to cycle back through the alphabet (26 letters). Maybe how many letters % 26?
+#     for shift in range(26):
+#         decrypted_text = ""
+#         for char in encrypted:
+#             if char.isalpha():
+#                 base = ord('A') if char.isupper() else ord('a')
+#                 decrypted_char = chr((ord(char) - base - shift) % 26 + base)
+#                 decrypted_text += decrypted_char
+#             else:
+#                 decrypted_text += char
+
+#         if known_word in decrypted_text:
+#             return decrypted_text
+
+#     return "Invalid"
+
+def decipher(ciphertext, known_word):
+    # Define the alphabets
+    lower_alphabet = "abcdefghijklmnopqrstuvwxyz"
+    upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
     for shift in range(26):
         decrypted_text = ""
-        for char in encrypted:
-            if char.isalpha():
-                base = ord('A') if char.isupper() else ord('a')
-                decrypted_char = chr((ord(char) - base - shift) % 26 + base)
-                decrypted_text += decrypted_char
+        for char in ciphertext:
+            if char in lower_alphabet:
+                # Find the new character in the lowercase alphabet
+                index = lower_alphabet.index(char) - shift
+                decrypted_text += lower_alphabet[index % 26]
+            elif char in upper_alphabet:
+                # Find the new character in the uppercase alphabet
+                index = upper_alphabet.index(char) - shift
+                decrypted_text += upper_alphabet[index % 26]
             else:
+                # Non-alphabetic characters remain unchanged
                 decrypted_text += char
-
+            print(decrypted_text)
+        # Check if the known word appears in the decrypted text
         if known_word in decrypted_text:
             return decrypted_text
 
@@ -67,10 +93,10 @@ print(decipher(encrypted, known_word))
 # 'tests' is a five-letter word. In the encrypted string, the only five-letter word is 'vguvu'. Therefore the encrypted version of 'tests' may be 'vguvu'
 # On comparing 'tests' to 'vguvu', it is clear that the encryption process has shifted every character in the plaintext by 2. So, the plaintext in this case is 'Coding tests are fun!'.
 
-# ! Example 2
-encrypted = 'cdeb nqxg'
-known_word = 'love'
-print(decipher(encrypted, known_word))
+# # ! Example 2
+# encrypted = 'cdeb nqxg'
+# known_word = 'love'
+# print(decipher(encrypted, known_word))
 # Output:
 # 'abcz love'
 
