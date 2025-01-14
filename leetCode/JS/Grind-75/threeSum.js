@@ -28,27 +28,58 @@
 // -105 <= nums[i] <= 105
 
 //! brute force
-var threeSum = function (nums) {
-	const res = [];
-	const seen = new Set(); // To track unique triplets
+// var threeSum = function (nums) {
+// 	const res = [];
+// 	const seen = new Set(); // To track unique triplets
 
-	nums.sort((a, b) => a - b); // Sort the array
+// 	nums.sort((a, b) => a - b); // Sort the array
+
+// 	for (let i = 0; i < nums.length; i++) {
+// 		for (let j = i + 1; j < nums.length; j++) {
+// 			for (let k = j + 1; k < nums.length; k++) {
+// 				if (nums[i] + nums[j] + nums[k] === 0) {
+// 					const triplet = [nums[i], nums[j], nums[k]];
+// 					const key = triplet.join(','); // Serialize as a string
+// 					if (!seen.has(key)) {
+// 						seen.add(key); // Add the string to the Set
+// 						res.push(triplet); // Push the actual array to the result
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	return res;
+// };
+
+//! 2 pointer
+
+var threeSum = function (nums) {
+	// Step 1: Sort the array
+	nums.sort((a, b) => a - b);
+	let res = [];
 
 	for (let i = 0; i < nums.length; i++) {
-		for (let j = i + 1; j < nums.length; j++) {
-			for (let k = j + 1; k < nums.length; k++) {
-				if (nums[i] + nums[j] + nums[k] === 0) {
-					const triplet = [nums[i], nums[j], nums[k]];
-					const key = triplet.join(','); // Serialize as a string
-					if (!seen.has(key)) {
-						seen.add(key); // Add the string to the Set
-						res.push(triplet); // Push the actual array to the result
-					}
-				}
+		// Step 2: Skip duplicates for the first number
+		if (i > 0 && nums[i] === nums[i - 1]) continue;
+		let left = i + 1;
+		let right = nums.length - 1;
+		while (left < right) {
+			const sum = nums[i] + nums[left] + nums[right];
+			if (sum === 0) {
+				res.push([nums[i], nums[left], nums[right]]);
+				// Move pointers to skip duplicates
+				while (left < right && nums[left] === nums[left + 1]) left++;
+				while (left < right && nums[right] === nums[right - 1]) right--;
+				left++;
+				right--;
+			} else if (sum < 0) {
+				left++; // Sum is too small; move left pointer to increase it
+			} else {
+				right--; // Sum is too large; move right pointer to decrease it
 			}
 		}
 	}
-
 	return res;
 };
 
